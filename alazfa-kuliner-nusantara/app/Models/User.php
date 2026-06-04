@@ -22,6 +22,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'no_hp',
+        'alamat',
+        'umur',
+        'jenis_kelamin',
+        'kendaraan',
+        'plat_nomor',
+        'role',
+        'foto_profil',
+        'status_akun',
     ];
 
     /**
@@ -46,4 +55,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function stores() { return $this->hasMany(Store::class, 'id_user'); }
+    public function carts() { return $this->hasMany(Cart::class, 'id_user'); }
+    public function orders() { return $this->hasMany(Order::class, 'id_user'); }
+    public function reviews() { return $this->hasMany(Review::class, 'id_user'); }
+    public function favorites() { return $this->hasMany(Favorite::class, 'id_user'); }
+    public function notifications() { return $this->hasMany(Notification::class, 'id_user'); }
+    public function deliveries() { return $this->hasMany(Order::class, 'id_kurir'); }
+    public function verifications() { return $this->hasMany(Verification::class, 'id_user'); }
+    public function monitorings() { return $this->hasMany(Monitoring::class, 'id_user'); }
 }
